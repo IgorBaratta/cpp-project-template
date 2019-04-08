@@ -27,30 +27,30 @@ set_target_properties(projectTest PROPERTIES
     CXX_EXTENSIONS NO
 )
 
-set (GNU_COMPILE_FLAGS
+set (GNU_COMPILE_OPTIONS
     -ansi
     -pedantic
     -Wall
     -Wextra
     -Wshadow
 )
-set (CLANG_COMPILE_FLAGS
+set (CLANG_COMPILE_OPTIONS
     -ansi
     -pedantic
     -Wall
     -Wextra
 )
-set (MSVC_COMPILE_FLAGS
+set (MSVC_COMPILE_OPTIONS
     /W4
 )
 
 if (GNU)
-    target_compile_options (${project} PRIVATE ${GNU_COMPILE_FLAGS})
-    target_compile_options (${projectTest} PRIVATE ${GNU_COMPILE_FLAGS})
+    target_compile_options (${project} PRIVATE ${GNU_COMPILE_OPTIONS})
+    target_compile_options (${projectTest} PRIVATE ${GNU_COMPILE_OPTIONS})
 elseif (clang)
-    target_compile_options (${project} PRIVATE ${CLANG_COMPILE_FLAGS})
-    target_compile_options (${projectTest} PRIVATE ${CLANG_COMPILE_FLAGS})
+    target_compile_options (${project} PRIVATE ${CLANG_COMPILE_OPTIONS})
+    target_compile_options (${projectTest} PRIVATE ${CLANG_COMPILE_OPTIONS})
 elseif (MSVC)
-    target_compile_options (${project} PRIVATE ${MSVC_COMPILE_FLAGS})
-    target_compile_options (${projectTest} PRIVATE ${MSVC_COMPILE_FLAGS})
+    target_compile_options (${project} PRIVATE ${MSVC_COMPILE_OPTIONS})
+    target_compile_options (${projectTest} PRIVATE ${MSVC_COMPILE_OPTIONS})
 endif ()
