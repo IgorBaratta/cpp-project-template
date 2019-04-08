@@ -1,5 +1,7 @@
 cmake_minimum_required (VERSION 3.8 FATAL_ERROR)
-project (ProjectTemplate VERSION 0.1 LANGUAGES CXX)
+project (Platformer VERSION 0.1 LANGUAGES CXX)
+
+set(BINARY_FOLDER "${CMAKE_SOURCE_DIR}/bin")
 
 set (SOURCES
 
@@ -13,18 +15,20 @@ set (TEST_SOURCES
     tests/tests.cpp
 )
 
-add_executable (project ${MAIN_SOURCE} ${SOURCES})
-set_target_properties(project PROPERTIES
+add_executable (platformer ${MAIN_SOURCE} ${SOURCES})
+set_target_properties(platformer PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED YES
     CXX_EXTENSIONS NO
+    RUNTIME_OUTPUT_DIRECTORY BINARY_FOLDER
 )
 
-add_executable (projectTest ${TEST_SOURCES} ${SOURCES})
-set_target_properties(projectTest PROPERTIES
+add_executable (platformer_tests ${TEST_SOURCES} ${SOURCES})
+set_target_properties(platformer_tests PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED YES
     CXX_EXTENSIONS NO
+    RUNTIME_OUTPUT_DIRECTORY BINARY_FOLDER
 )
 
 set (GNU_COMPILE_OPTIONS
@@ -45,12 +49,12 @@ set (MSVC_COMPILE_OPTIONS
 )
 
 if (GNU)
-    target_compile_options (${project} PRIVATE ${GNU_COMPILE_OPTIONS})
-    target_compile_options (${projectTest} PRIVATE ${GNU_COMPILE_OPTIONS})
+    target_compile_options (${platformer} PRIVATE ${GNU_COMPILE_OPTIONS})
+    target_compile_options (${platformer_tests} PRIVATE ${GNU_COMPILE_OPTIONS})
 elseif (clang)
-    target_compile_options (${project} PRIVATE ${CLANG_COMPILE_OPTIONS})
-    target_compile_options (${projectTest} PRIVATE ${CLANG_COMPILE_OPTIONS})
+    target_compile_options (${platformer} PRIVATE ${CLANG_COMPILE_OPTIONS})
+    target_compile_options (${platformer_tests} PRIVATE ${CLANG_COMPILE_OPTIONS})
 elseif (MSVC)
-    target_compile_options (${project} PRIVATE ${MSVC_COMPILE_OPTIONS})
-    target_compile_options (${projectTest} PRIVATE ${MSVC_COMPILE_OPTIONS})
+    target_compile_options (${platformer} PRIVATE ${MSVC_COMPILE_OPTIONS})
+    target_compile_options (${platformer_tests} PRIVATE ${MSVC_COMPILE_OPTIONS})
 endif ()
